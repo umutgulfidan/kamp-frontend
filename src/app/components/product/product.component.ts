@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../modules/product';
-import { ProductResponseModule } from '../../modules/productResponseModule';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../../services/product.service';
 
