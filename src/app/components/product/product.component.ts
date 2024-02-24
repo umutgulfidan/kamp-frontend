@@ -13,6 +13,7 @@ export class ProductComponent implements OnInit {
 
   products :Product[] = []
   dataLoaded:boolean = false;
+  filterText:string="";
 
   constructor(private productService:ProductService,private activatedRoute:ActivatedRoute){
   

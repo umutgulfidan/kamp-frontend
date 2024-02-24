@@ -23,5 +23,6 @@ export class ProductService {
       let newPath = this.apiUrl +"products/getbycategory?categoryId=" +categoryId
       return this.httpClient.get<ListResponseModel<Product>>(newPath)
     }
-  }
+
+}
 
