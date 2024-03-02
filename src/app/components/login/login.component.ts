@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,FormBuilder,Validators  } from "@angular/forms";
+import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,7 @@ import { FormGroup,FormControl,FormBuilder,Validators  } from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
-constructor(private formBuilder:FormBuilder){}
+constructor(private formBuilder:FormBuilder,private authService:AuthService,private toastrService:ToastrService){}
 
   loginForm:FormGroup;
 
@@ -25,7 +27,16 @@ constructor(private formBuilder:FormBuilder){}
 
   login(){
     if(this.loginForm.valid){
-      console.log(this.loginForm.value)
+      let loginModel = Object.assign({},this.loginForm.value)
+      this.authService.login(loginModel).subscribe(response=>{
+        this.toastrService.info(response.message,"Giriş")
+        localStorage.setItem("token",response.data.token)
+      },responseError=>{
+        this.toastrService.error(responseError.error,"Giriş Hatası");
+      })
+    }
+    else{
+        this.toastrService.error("Formunuz Eksik","Giriş")
     }
   }
 
