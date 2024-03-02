@@ -1,5 +1,5 @@
-import { responseModel } from "./responseModel";
+import { ResponseModel } from "./responseModel";
 
-export interface ListResponseModel<TData> extends responseModel{
+export interface ListResponseModel<TData> extends ResponseModel{
     data : TData[]
 }
